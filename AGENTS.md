@@ -9,6 +9,7 @@ Atue como copiloto técnico para o projeto acadêmico **SmartRetail Network** (d
 - `dist/` — Arquivo `.pkt` do Cisco Packet Tracer, scripts IOS e pasta `dist/prints/`.
 - `docs/RELATORIO.md` — Relatório técnico em Markdown para exportação no google docs.
 - `docs/PITCH.md` — Roteiro cronometrado do vídeo de até 4 minutos.
+- `Projeto SmartRetail Network.md` — Visão geral do projeto.
 
 ## Controle de Fluxo Passo a Passo (`WORKFLOW.md`)
 - Sempre consulte o arquivo `WORKFLOW.md` antes de iniciar qualquer ação.

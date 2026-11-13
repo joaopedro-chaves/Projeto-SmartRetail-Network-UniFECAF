@@ -8,15 +8,15 @@
 
 ## Fase 1: Arquitetura e Planejamento (13/11)
 
-- [ ] **Passo 1 — Levantamento e Inventário de Dispositivos**
+- [x] **Passo 1 — Levantamento e Inventário de Dispositivos**
   - **Ação da IA:** Listar todos os equipamentos exigidos em `docs/ORIENTACOES.md` (3 caixas, 2 tablets, 1 impressora, 1 máquina de cartão, 1 servidor de estoque/gravação, 4 câmeras IP, roteador/gateway, switch(es), AP e Internet) e definir quais dispositivos substitutos serão usados no Cisco Packet Tracer caso algum ícone não exista nativamente.
   - **Critério de Confirmação:** Usuário aprova a lista de dispositivos e os substitutos escolhidos.
 
-- [ ] **Passo 2 — Definição de Segmentação (VLANs) e Regras de Segurança**
+- [x] **Passo 2 — Definição de Segmentação (VLANs) e Regras de Segurança**
   - **Ação da IA:** Propor a divisão lógica da rede (ex.: VLAN 10 Vendas/PDV, VLAN 20 Servidores, VLAN 30 CFTV, VLAN 40 Wi-Fi/Tablets) e definir a matriz de comunicação (quem acessa quem e o que será bloqueado via ACL, garantindo isolamento das câmeras).
   - **Critério de Confirmação:** Usuário valida as VLANs e a política de isolamento.
 
-- [ ] **Passo 3 — Plano de Endereçamento IPv4 (Estático vs. DHCP)**
+- [x] **Passo 3 — Plano de Endereçamento IPv4 (Estático vs. DHCP)**
   - **Ação da IA:** Criar o arquivo `dist/plano_rede.md` com a tabela completa de sub-redes, máscaras, gateways, DNS, lista de dispositivos com IP estático (servidor, câmeras, impressora, interfaces) e faixas de pool DHCP (caixas, tablets, maquininha).
   - **Critério de Confirmação:** Usuário confirma que os IPs e faixas estão prontos para serem aplicados.
 
@@ -26,6 +26,7 @@
 - [ ] **Passo 4 — Guia de Montagem Física da Topologia**
   - **Ação da IA:** Fornecer o mapa exato de conexões porta-a-porta (qual porta do Switch liga em qual equipamento, porta Trunk para o Roteador e ligação do Access Point) para o usuário montar o desenho no Packet Tracer.
   - **Critério de Confirmação:** Usuário confirma que montou os equipamentos e conectou os cabos no Packet Tracer.
+  - Caso necessaario pode usar imagens para auxiliar o usuario na montagem da topologia. Prompt para o gemini para gerar as imagens ou use o nano banana.
 
 - [ ] **Passo 5 — Configuração do Switch (VLANs e Portas Access/Trunk)**
   - **Ação da IA:** Gerar o bloco de comandos Cisco IOS limpo para criação das VLANs e atribuição das interfaces no Switch, pronto para colar no terminal CLI.
