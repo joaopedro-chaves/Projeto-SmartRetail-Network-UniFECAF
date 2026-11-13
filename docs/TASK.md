@@ -1,15 +1,15 @@
 # **13/11 - Planejamento**
-- [ ] Ler o PDF de orientações até o fim e anotar os requisitos
-- [ ] Listar os equipamentos: 3 caixas, 2 tablets, 1 impressora, 1 máquina de cartão, 1 servidor de estoque, 4 câmeras IP
-- [ ] Definir os equipamentos de rede: roteador/gateway, switch(es), access point
-- [ ] Decidir a segmentação (VLANs). Sugestão de grupos:
-    - [ ] Vendas/PDV (caixas, máquina de cartão, impressora)
-    - [ ] Servidor de estoque
-    - [ ] CFTV (câmeras, isoladas do resto)
-    - [ ] Wi-Fi dos tablets
-- [ ] Montar o plano de endereçamento IPv4 (rede, máscara, gateway, faixa DHCP por VLAN)
-- [ ] Definir quais dispositivos terão **IP estático** (servidor, câmeras, impressora, gateways) e quais usarão **DHCP**
-- [ ] Definir as regras de segurança (quem acessa o servidor, CFTV isolado, Wi-Fi com WPA2/WPA3)
+- [x] Ler o PDF de orientações até o fim e anotar os requisitos
+- [x] Listar os equipamentos: 3 caixas, 2 tablets, 1 impressora, 1 máquina de cartão, 1 servidor de estoque, 4 câmeras IP
+- [x] Definir os equipamentos de rede: roteador/gateway, switch(es), access point
+- [x] Decidir a segmentação (VLANs). Sugestão de grupos:
+    - [x] Vendas/PDV (caixas, impressora — *maquininha Wi-Fi alocada na VLAN 40 com o AP*)
+    - [x] Servidor de estoque
+    - [x] CFTV (câmeras, isoladas do resto)
+    - [x] Wi-Fi dos tablets *(e Maquininha-POS via AP-Loja)*
+- [x] Montar o plano de endereçamento IPv4 (rede, máscara, gateway, faixa DHCP por VLAN)
+- [x] Definir quais dispositivos terão **IP estático** (servidor, câmeras, impressora, gateways) e quais usarão **DHCP**
+- [x] Definir as regras de segurança (quem acessa o servidor, CFTV isolado, Wi-Fi com WPA2/WPA3)
 
 ## **Packet Tracer**
 - [ ] Montar a topologia com todos os dispositivos
@@ -37,16 +37,16 @@
 - [ ] Tirar **prints**: topologia, configurações, tabela de IPs, resultados dos testes
 
 ## **Relatório técnico em PDF (25%)**
-- [ ] Diagnóstico das necessidades da Ana Fashion
-- [ ] Proposta geral da arquitetura
-- [ ] Justificativa da topologia e dos equipamentos
-- [ ] Plano de endereçamento IPv4 (tabela)
-- [ ] Dispositivos com IP estático vs DHCP
-- [ ] Proposta de segmentação
-- [ ] Principais serviços de rede (DHCP, DNS, gateway...)
-- [ ] Controles básicos de segurança
-- [ ] Justificativa de crescimento futuro (VLANs/faixas reservadas, portas livres no switch, novo AP)
-- [ ] Responder à pergunta final: *"Como estruturar uma rede de pequeno porte que integre vendas, estoque, pagamentos, móveis e CFTV com segurança, disponibilidade e expansão?"*
+- [x] Diagnóstico das necessidades da Ana Fashion *(redigido em `docs/RELATORIO.md`)*
+- [x] Proposta geral da arquitetura *(redigido; falta inserir print da topologia)*
+- [x] Justificativa da topologia e dos equipamentos *(redigido)*
+- [x] Plano de endereçamento IPv4 (tabela) *(redigido)*
+- [x] Dispositivos com IP estático vs DHCP *(redigido)*
+- [x] Proposta de segmentação *(redigido)*
+- [x] Principais serviços de rede (DHCP, DNS, gateway...) *(redigido)*
+- [x] Controles básicos de segurança *(redigido; falta anexar evidências/prints)*
+- [x] Justificativa de crescimento futuro (VLANs/faixas reservadas, portas livres no switch, novo AP) *(redigido)*
+- [x] Responder à pergunta final: *"Como estruturar uma rede de pequeno porte que integre vendas, estoque, pagamentos, móveis e CFTV com segurança, disponibilidade e expansão?"* *(redigido)*
 - [ ] Inserir o diagrama e os prints
 - [ ] Conferir se o relatório bate com a rede do Packet Tracer
 - [ ] Exportar em **PDF**
