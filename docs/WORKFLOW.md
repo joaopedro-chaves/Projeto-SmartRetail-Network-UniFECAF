@@ -36,7 +36,7 @@
   - **Ação da IA:** Gerar o bloco de comandos Cisco IOS para sub-interfaces (Router-on-a-Stick), pools DHCP por VLAN, configuração de DNS e saída para a Internet (WAN).
   - **Critério de Confirmação:** Usuário confirma que aplicou os comandos no Roteador e os dispositivos dinâmicos pegaram IP via DHCP.
 
-- [ ] **Passo 7 — Configuração de IPs Estáticos, Wi-Fi e Segurança (ACLs)**
+- [x] **Passo 7 — Configuração de IPs Estáticos, Wi-Fi e Segurança (ACLs)**
   - **Ação da IA:** Listar os valores exatos para preencher manualmente nos dispositivos com IP estático (Servidor, Câmeras, Impressora), SSID/senha WPA2 do Access Point/Tablets e o bloco de comandos ACL no Roteador para isolar a VLAN de CFTV.
   - **Critério de Confirmação:** Usuário confirma que toda a topologia está configurada e o arquivo `.pkt` foi salvo.
 
