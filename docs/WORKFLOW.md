@@ -42,16 +42,16 @@
 
 ## Fase 3: Testes e Evidências (14/11)
 
-- [ ] **Passo 8 — Roteiro de Testes de Conectividade e Checklist de Prints**
+- [x] **Passo 8 — Roteiro de Testes de Conectividade e Checklist de Prints**
   - **Ação da IA:** Entregar a lista exata de comandos `ping` que o usuário deve rodar (caixas -> servidor, tablets -> servidor, câmeras -> servidor, bloqueio tablet -> câmeras, acesso Internet) e os nomes exatos dos prints para salvar em `dist/prints/`.
   - **Critério de Confirmação:** Usuário confirma que rodou os testes e salvou todos os prints na pasta.
 
 ## Fase 4: Relatório Técnico e Vídeo Pitch (14/11 e 15/11)
 
-- [ ] **Passo 9 — Redação do Relatório Técnico (`dist/relatorio.md`)**
+- [x] **Passo 9 — Redação do Relatório Técnico (`dist/relatorio.md`)**
   - **Ação da IA:** Escrever o relatório completo cobrindo os 9 tópicos obrigatórios da UniFECAF + resposta à questão central, utilizando exatamente os IPs, VLANs e equipamentos validados nos passos anteriores, indicando onde inserir cada print antes de exportar para PDF.
   - **Critério de Confirmação:** Usuário revisa o texto, insere os prints e confirma a exportação do PDF.
 
-- [ ] **Passo 10 — Roteiro do Vídeo Pitch (`dist/pitch.md`) e Checklist Final**
+- [x] **Passo 10 — Roteiro do Vídeo Pitch (`dist/pitch.md`) e Checklist Final**
   - **Ação da IA:** Gerar o roteiro cronometrado (3m30s a 3m50s, dentro do limite de 4 minutos) guiando o que mostrar na tela do Packet Tracer em cada segundo, mais o checklist final de entrega no AVA.
   - **Critério de Confirmação:** Trabalho finalizado e pronto para gravação e envio.

@@ -34,7 +34,8 @@ Os equipamentos de infraestrutura, o servidor, a impressora e as câmeras utiliz
 | **Roteador Gateway** (`RTR-AnaFashion`) | `Router 2911` | `Gi0/0.99` *(native)* | 99 | `192.168.99.1` | `255.255.255.0` | — | Gateway de Gerência / Native VLAN |
 | **Roteador Gateway** (`RTR-AnaFashion`) | `Router 2911` | `Gi0/1` *(outside NAT)* | WAN | `203.0.113.2` | `255.255.255.252` | `203.0.113.1` | Saída WAN para Internet (com PAT/NAT) |
 | **Switch Principal L2** (`SW-AnaFashion`) | `Switch 2960-24TT` | `Vlan 99` (SVI) | 99 | `192.168.99.2` | `255.255.255.0` | `192.168.99.1` | Interface de gerência L2 do Switch |
-| **Access Point Wi-Fi** (`AP-Loja`) | `AccessPoint-PT` | `Port 0 / Port 1` | 40 | *(Bridge L2 — sem IP)* | — | — | Ponte transparente Wi-Fi (`VLAN 40`) |
+| **Access Point Wi-Fi** (`AP-Loja`) | `AccessPoint-PT` | `Port 0 / Port 1` | 40 | *(Bridge L2 — sem IP)* | — | — | Ponte transparente Wi-Fi (`VLAN 40`, SSID `AnaFashion-Corp`) |
+| **Modem WAN** (`Modem-WAN`) | `Cable-Modem-PT` | `Port 0 / Port 1` | WAN | *(Bridge L1 — sem IP)* | — | — | Conversor passivo Coaxial ↔ Ethernet para a `Cloud-PT` |
 | **Roteador Operadora ISP** (`ISP-WAN`) | `Router 2911` | `Gi0/0` | WAN | `203.0.113.1` | `255.255.255.252` | — | Roteador da operadora (simulação WAN) |
 | **Roteador Operadora ISP** (`ISP-WAN`) | `Router 2911` | `Gi0/1` | Ext. | `8.8.8.1` | `255.255.255.0` | — | Gateway da rede externa simulada |
 | **Servidor Externo Internet** (`Internet-Test`) | `Server-PT` | `FastEthernet0` | Ext. | `8.8.8.8` | `255.255.255.0` | `8.8.8.1` | Servidor externo simulado para teste de `ping` |
@@ -44,10 +45,10 @@ Os equipamentos de infraestrutura, o servidor, a impressora e as câmeras utiliz
 | :--- | :--- | :---: | :--- | :--- | :--- | :--- | :--- |
 | **Servidor Local Estoque/NVR** (`SRV-Estoque-NVR`) | `Server-PT` | 20 | `192.168.20.10` | `255.255.255.0` | `192.168.20.1` | `192.168.20.10` | Servidor central de estoque, DNS interno e gravação NVR; exige endereço fixo imutável. |
 | **Impressora de Rede** (`Impressora-Rede`) | `Printer-PT` | 10 | `192.168.10.10` | `255.255.255.0` | `192.168.10.1` | `192.168.20.10` | Periférico compartilhado pelos caixas; IP fixo evita falhas de spool e facilita futura regra de exceção em ACL. |
-| **Câmera IP 01** (`Cam-IP-01`) | `PC-PT` *(substituto)* | 30 | `192.168.30.11` | `255.255.255.0` | `192.168.30.1` | `192.168.20.10` | Câmera IP 01 — IP fixo permite identificação contínua pelo NVR e auditoria de segurança. |
-| **Câmera IP 02** (`Cam-IP-02`) | `PC-PT` *(substituto)* | 30 | `192.168.30.12` | `255.255.255.0` | `192.168.30.1` | `192.168.20.10` | Câmera IP 02 — IP fixo para gravação contínua no NVR. |
-| **Câmera IP 03** (`Cam-IP-03`) | `PC-PT` *(substituto)* | 30 | `192.168.30.13` | `255.255.255.0` | `192.168.30.1` | `192.168.20.10` | Câmera IP 03 — IP fixo para gravação contínua no NVR. |
-| **Câmera IP 04** (`Cam-IP-04`) | `PC-PT` *(substituto)* | 30 | `192.168.30.14` | `255.255.255.0` | `192.168.30.1` | `192.168.20.10` | Câmera IP 04 — IP fixo para gravação contínua no NVR. |
+| **Câmera IP 01** (`CAM-IP-01`) | `PC-PT` *(substituto)* | 30 | `192.168.30.11` | `255.255.255.0` | `192.168.30.1` | `192.168.20.10` | Câmera IP 01 — IP fixo permite identificação contínua pelo NVR e auditoria de segurança. |
+| **Câmera IP 02** (`CAM-IP-02`) | `PC-PT` *(substituto)* | 30 | `192.168.30.12` | `255.255.255.0` | `192.168.30.1` | `192.168.20.10` | Câmera IP 02 — IP fixo para gravação contínua no NVR. |
+| **Câmera IP 03** (`CAM-IP-03`) | `PC-PT` *(substituto)* | 30 | `192.168.30.13` | `255.255.255.0` | `192.168.30.1` | `192.168.20.10` | Câmera IP 03 — IP fixo para gravação contínua no NVR. |
+| **Câmera IP 04** (`CAM-IP-04`) | `PC-PT` *(substituto)* | 30 | `192.168.30.14` | `255.255.255.0` | `192.168.30.1` | `192.168.20.10` | Câmera IP 04 — IP fixo para gravação contínua no NVR. |
 
 ---
 
@@ -80,7 +81,7 @@ O serviço DHCP será centralizado no roteador **`RTR-AnaFashion`**, reservando 
 ### 4.1 Serviços Estruturados
 - **Gateway / Roteamento Inter-VLAN (`RTR-AnaFashion`):** Roteamento *Router-on-a-Stick* via encapsulamento 802.1Q, traduzindo endereços internos para a WAN via **NAT Overload (PAT)** na interface `Gi0/1`.
 - **DHCP (`RTR-AnaFashion`):** Distribuição automática de IPv4, máscara, gateway e DNS para `VLAN 10` e `VLAN 40`.
-- **DNS Interno (`SRV-Estoque-NVR` — `192.168.20.10`) + Secundário (`8.8.8.8`):** Serviço DNS habilitado no servidor local para resolução de nomes corporativos internos (ex.: `estoque.anafashion.local` e `nvr.anafashion.local`), evitando dependência de memorização de IPs pelos usuários.
+- **DNS Interno (`SRV-Estoque-NVR` — `192.168.20.10`):** Serviço DNS habilitado no servidor local para resolução de nomes corporativos internos (`estoque.anafashion.local` e `nvr.anafashion.local`), configurado como `dns-server 192.168.20.10` nos pools DHCP *(no simulador Packet Tracer, o comando `dns-server` do pool DHCP aceita apenas 1 endereço IP; o `8.8.8.8` atua como destino externo de validação WAN)*.
 
 ### 4.2 Reserva para Crescimento Futuro (Escalabilidade)
 - **Endereços Estáticos Reservados:** Faixa `.2` a `.99` livre em todas as VLANs para novas impressoras, servidores auxiliares, novas câmeras IP (`192.168.30.15+`) ou novos Access Points.

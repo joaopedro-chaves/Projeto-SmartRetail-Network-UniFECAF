@@ -12,47 +12,47 @@
 - [x] Definir as regras de segurança (quem acessa o servidor, CFTV isolado, Wi-Fi com WPA2/WPA3)
 
 ## **Packet Tracer**
-- [ ] Montar a topologia com todos os dispositivos
-- [ ] Ligar os cabos (cabeados) e o access point (sem fio)
-- [ ] Configurar as VLANs e as portas do switch (access/trunk)
-- [ ] Configurar o gateway/roteamento entre VLANs
-- [ ] Configurar o DHCP e o DNS
-- [ ] Configurar IPs estáticos nos dispositivos definidos
-- [ ] Configurar o Wi-Fi dos tablets (SSID + senha)
-- [ ] Aplicar a segurança básica (ACLs, isolamento do CFTV)
-- [ ] Conectar a saída para a Internet (nuvem/ISP)
-- [ ] Salvar o arquivo `.pkt` e fazer uma cópia de backup
+- [x] Montar a topologia com todos os dispositivos
+- [x] Ligar os cabos (cabeados) e o access point (sem fio)
+- [x] Configurar as VLANs e as portas do switch (access/trunk)
+- [x] Configurar o gateway/roteamento entre VLANs
+- [x] Configurar o DHCP e o DNS
+- [x] Configurar IPs estáticos nos dispositivos definidos
+- [x] Configurar o Wi-Fi dos tablets (SSID + senha)
+- [x] Aplicar a segurança básica (ACLs, isolamento do CFTV)
+- [x] Conectar a saída para a Internet (nuvem/ISP)
+- [x] Salvar o arquivo `.pkt` *(fazer uma cópia de backup antes do envio)*
 
 > [!tip] Câmeras no Packet Tracer
 > Se não houver ícone de câmera IP na sua versão, use um dispositivo que a represente (PC/Server/IoT) e explique isso no relatório.
 
 # 14/11 - Testes + Relatório + Roteiro
 **Testes e evidências**
-- [ ] **Testes de conectividade** (ping e outros):
-    - [ ] Caixas → servidor de estoque
-    - [ ] Tablets → servidor de estoque
-    - [ ] Câmeras → servidor/gravação
-    - [ ] Acesso bloqueado onde deve ser bloqueado (ex.: tablet → CFTV)
-    - [ ] Acesso à Internet
-- [ ] Tirar **prints**: topologia, configurações, tabela de IPs, resultados dos testes
+- [x] **Testes de conectividade** (ping e outros):
+    - [x] Caixas → servidor de estoque
+    - [x] Tablets → servidor de estoque
+    - [x] Câmeras → servidor/gravação
+    - [x] Acesso bloqueado onde deve ser bloqueado (ex.: tablet → CFTV)
+    - [x] Acesso à Internet
+- [x] Tirar **prints**: topologia, configurações, tabela de IPs, resultados dos testes
 
 ## **Relatório técnico em PDF (25%)**
 - [x] Diagnóstico das necessidades da Ana Fashion *(redigido em `docs/RELATORIO.md`)*
-- [x] Proposta geral da arquitetura *(redigido; falta inserir print da topologia)*
+- [x] Proposta geral da arquitetura *(redigido com print da topologia)*
 - [x] Justificativa da topologia e dos equipamentos *(redigido)*
 - [x] Plano de endereçamento IPv4 (tabela) *(redigido)*
 - [x] Dispositivos com IP estático vs DHCP *(redigido)*
 - [x] Proposta de segmentação *(redigido)*
 - [x] Principais serviços de rede (DHCP, DNS, gateway...) *(redigido)*
-- [x] Controles básicos de segurança *(redigido; falta anexar evidências/prints)*
+- [x] Controles básicos de segurança *(redigido com evidências/prints)*
 - [x] Justificativa de crescimento futuro (VLANs/faixas reservadas, portas livres no switch, novo AP) *(redigido)*
 - [x] Responder à pergunta final: *"Como estruturar uma rede de pequeno porte que integre vendas, estoque, pagamentos, móveis e CFTV com segurança, disponibilidade e expansão?"* *(redigido)*
-- [ ] Inserir o diagrama e os prints
-- [ ] Conferir se o relatório bate com a rede do Packet Tracer
+- [x] Inserir o diagrama e os prints
+- [x] Conferir se o relatório bate com a rede do Packet Tracer
 - [ ] Exportar em **PDF**
 
 ## **Vídeo (preparação)**
-- [ ] Escrever o roteiro (problema → arquitetura → equipamentos → endereçamento/segmentação → integração → testes → benefícios)
+- [x] Escrever o roteiro (problema → arquitetura → equipamentos → endereçamento/segmentação → integração → testes → benefícios)
 - [ ] Ensaiar cronometrando (< 4 min)
 
 # 15/11: Vídeo + Revisão + Entrega
