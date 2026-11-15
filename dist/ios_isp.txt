@@ -1,0 +1,26 @@
+! =====================================================================
+! Script Cisco IOS - Roteador Operadora (ISP-WAN - 2911)
+! Projeto: SmartRetail Network (Ana Fashion) - UniFECAF
+! Passo 6: Simulacao do Enlace WAN e Rede Externa (8.8.8.0/24)
+! =====================================================================
+
+enable
+configure terminal
+
+hostname ISP-WAN
+no ip domain-lookup
+
+interface GigabitEthernet0/0
+ description LINK_PARA_CLOUD_ANAFASHION
+ ip address 203.0.113.1 255.255.255.252
+ no shutdown
+ exit
+
+interface GigabitEthernet0/1
+ description REDE_INTERNET_SIMULADA
+ ip address 8.8.8.1 255.255.255.0
+ no shutdown
+ exit
+
+end
+write memory

@@ -1,0 +1,102 @@
+! =====================================================================
+! Script Cisco IOS - Roteador Gateway (RTR-AnaFashion - 2911)
+! Projeto: SmartRetail Network (Ana Fashion) - UniFECAF
+! Passo 6: Router-on-a-Stick, Pools DHCP, DNS, Rota WAN e NAT/PAT
+! (As ACLs de seguranca serao aplicadas no Passo 7)
+! =====================================================================
+
+enable
+configure terminal
+
+! --- 1. Identificacao e Seguranca Basica ---
+hostname RTR-AnaFashion
+no ip domain-lookup
+enable secret AnaFashion2026
+service password-encryption
+banner motd # Acesso Restrito - Ana Fashion (RTR-AnaFashion) #
+
+line console 0
+ password ConAna2026
+ login
+ logging synchronous
+ exit
+
+line vty 0 4
+ password VtyAna2026
+ login
+ exit
+
+! --- 2. Interface Fisica LAN (Trunk 802.1Q) e Sub-interfaces ---
+interface GigabitEthernet0/0
+ description UPLINK_TRUNK_SW_ANAFASHION
+ no shutdown
+ exit
+
+interface GigabitEthernet0/0.10
+ description GATEWAY_VLAN10_VENDAS_PDV
+ encapsulation dot1Q 10
+ ip address 192.168.10.1 255.255.255.0
+ ip nat inside
+ exit
+
+interface GigabitEthernet0/0.20
+ description GATEWAY_VLAN20_SERVIDORES
+ encapsulation dot1Q 20
+ ip address 192.168.20.1 255.255.255.0
+ ip nat inside
+ exit
+
+interface GigabitEthernet0/0.30
+ description GATEWAY_VLAN30_CFTV
+ encapsulation dot1Q 30
+ ip address 192.168.30.1 255.255.255.0
+ exit
+
+interface GigabitEthernet0/0.40
+ description GATEWAY_VLAN40_WLAN_MOVEL
+ encapsulation dot1Q 40
+ ip address 192.168.40.1 255.255.255.0
+ ip nat inside
+ exit
+
+interface GigabitEthernet0/0.99
+ description GATEWAY_VLAN99_NATIVA_GERENCIA
+ encapsulation dot1Q 99 native
+ ip address 192.168.99.1 255.255.255.0
+ exit
+
+! --- 3. Interface WAN e Rota Padrao para Internet ---
+interface GigabitEthernet0/1
+ description SAIDA_WAN_MODEM_ISP
+ ip address 203.0.113.2 255.255.255.252
+ ip nat outside
+ no shutdown
+ exit
+
+ip route 0.0.0.0 0.0.0.0 203.0.113.1
+
+! --- 4. NAT Overload (PAT) para Acesso Externo ---
+access-list 1 permit 192.168.10.0 0.0.0.255
+access-list 1 permit 192.168.20.0 0.0.0.255
+access-list 1 permit 192.168.40.0 0.0.0.255
+ip nat inside source list 1 interface GigabitEthernet0/1 overload
+
+! --- 5. Pools DHCP (VLAN 10 e VLAN 40) ---
+ip dhcp excluded-address 192.168.10.1 192.168.10.99
+ip dhcp excluded-address 192.168.40.1 192.168.40.99
+
+ip dhcp pool POOL_VLAN10_PDV
+ network 192.168.10.0 255.255.255.0
+ default-router 192.168.10.1
+ dns-server 192.168.20.10
+ exit
+
+ip dhcp pool POOL_VLAN40_WLAN
+ network 192.168.40.0 255.255.255.0
+ default-router 192.168.40.1
+ dns-server 192.168.20.10
+ exit
+
+! --- 6. Salvar Configuracao ---
+end
+write memory

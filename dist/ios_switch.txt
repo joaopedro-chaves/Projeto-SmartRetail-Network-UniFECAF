@@ -1,0 +1,138 @@
+! =====================================================================
+! Script Cisco IOS - Switch Principal L2 (SW-AnaFashion - 2960-24TT)
+! Projeto: SmartRetail Network (Ana Fashion) - UniFECAF
+! Passo 5: VLANs, Portas Access/Trunk, Hardening e SVI de Gerencia
+! =====================================================================
+
+enable
+configure terminal
+
+! --- 1. Identificacao e Seguranca Basica ---
+hostname SW-AnaFashion
+no ip domain-lookup
+enable secret AnaFashion2026
+service password-encryption
+banner motd # Acesso Restrito - Ana Fashion (SW-AnaFashion) #
+
+line console 0
+ password ConAna2026
+ login
+ logging synchronous
+ exit
+
+line vty 0 15
+ password VtyAna2026
+ login
+ exit
+
+! --- 2. Criacao das VLANs (conforme plano_rede.md) ---
+vlan 10
+ name VENDAS_PDV
+ exit
+vlan 20
+ name SERVIDORES
+ exit
+vlan 30
+ name CFTV
+ exit
+vlan 40
+ name WLAN_MOVEL
+ exit
+vlan 99
+ name NATIVA_GERENCIA
+ exit
+
+! --- 3. Portas Access por Setor ---
+! VLAN 10: Caixa-01 (Fa0/1), Caixa-02 (Fa0/2), Caixa-03 (Fa0/3), Impressora-Rede (Fa0/4)
+interface range FastEthernet0/1 - 4
+ description VLAN10_VENDAS_PDV
+ switchport mode access
+ switchport access vlan 10
+ spanning-tree portfast
+ no shutdown
+ exit
+
+! VLAN 20: SRV-Estoque-NVR (Fa0/9)
+interface FastEthernet0/9
+ description VLAN20_SRV_ESTOQUE_NVR
+ switchport mode access
+ switchport access vlan 20
+ spanning-tree portfast
+ no shutdown
+ exit
+
+! VLAN 30: Cam-IP-01 a Cam-IP-04 (Fa0/11 a Fa0/14)
+interface range FastEthernet0/11 - 14
+ description VLAN30_CFTV_CAMERAS
+ switchport mode access
+ switchport access vlan 30
+ spanning-tree portfast
+ no shutdown
+ exit
+
+! VLAN 40: AP-Loja (Fa0/19)
+interface FastEthernet0/19
+ description VLAN40_AP_LOJA
+ switchport mode access
+ switchport access vlan 40
+ spanning-tree portfast
+ no shutdown
+ exit
+
+! --- 4. Porta Trunk 802.1Q para o Roteador (RTR-AnaFashion Gi0/0) ---
+interface GigabitEthernet0/1
+ description TRUNK_RTR_ANAFASHION
+ switchport mode trunk
+ switchport trunk native vlan 99
+ switchport trunk allowed vlan 10,20,30,40,99
+ no shutdown
+ exit
+
+! --- 5. Hardening: Portas Ociosas / Reserva na VLAN 99 e Desligadas ---
+interface range FastEthernet0/5 - 8
+ description RESERVA_PDV_INATIVA
+ switchport mode access
+ switchport access vlan 99
+ shutdown
+ exit
+
+interface FastEthernet0/10
+ description RESERVA_SRV_INATIVA
+ switchport mode access
+ switchport access vlan 99
+ shutdown
+ exit
+
+interface range FastEthernet0/15 - 18
+ description RESERVA_CFTV_INATIVA
+ switchport mode access
+ switchport access vlan 99
+ shutdown
+ exit
+
+interface range FastEthernet0/20 - 24
+ description RESERVA_GERAL_INATIVA
+ switchport mode access
+ switchport access vlan 99
+ shutdown
+ exit
+
+interface GigabitEthernet0/2
+ description RESERVA_UPLINK_INATIVA
+ switchport mode access
+ switchport access vlan 99
+ shutdown
+ exit
+
+! --- 6. Interface de Gerencia (SVI VLAN 99) e Gateway ---
+interface Vlan99
+ description GERENCIA_SW_ANAFASHION
+ ip address 192.168.99.2 255.255.255.0
+ no shutdown
+ exit
+
+ip default-gateway 192.168.99.1
+
+! --- 7. Salvar Configuracao ---
+end
+write memory

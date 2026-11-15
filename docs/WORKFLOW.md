@@ -23,12 +23,12 @@
 
 ## Fase 2: Implementação no Cisco Packet Tracer (13/11)
 
-- [ ] **Passo 4 — Guia de Montagem Física da Topologia**
+- [x] **Passo 4 — Guia de Montagem Física da Topologia**
   - **Ação da IA:** Fornecer o mapa exato de conexões porta-a-porta (qual porta do Switch liga em qual equipamento, porta Trunk para o Roteador e ligação do Access Point) para o usuário montar o desenho no Packet Tracer.
   - **Critério de Confirmação:** Usuário confirma que montou os equipamentos e conectou os cabos no Packet Tracer.
   - Caso necessaario pode usar imagens para auxiliar o usuario na montagem da topologia. Prompt para o gemini para gerar as imagens ou use o nano banana.
 
-- [ ] **Passo 5 — Configuração do Switch (VLANs e Portas Access/Trunk)**
+- [x] **Passo 5 — Configuração do Switch (VLANs e Portas Access/Trunk)**
   - **Ação da IA:** Gerar o bloco de comandos Cisco IOS limpo para criação das VLANs e atribuição das interfaces no Switch, pronto para colar no terminal CLI.
   - **Critério de Confirmação:** Usuário confirma que aplicou os comandos no Switch sem erros.
 
