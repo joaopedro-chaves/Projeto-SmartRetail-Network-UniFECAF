@@ -31,7 +31,7 @@ Adicione à área de trabalho lógica (*Logical Workspace*) os seguintes disposi
 | Caixas Registradoras (PDV) | 3 | `Caixa-01`, `Caixa-02`, `Caixa-03` | `PC-PT` | `End Devices > End Devices > PC` |
 | Impressora de Rede | 1 | `Impressora-Rede` | `Printer-PT` | `End Devices > End Devices > Printer` |
 | Servidor Local (Estoque + NVR) | 1 | `SRV-Estoque-NVR` | `Server-PT` | `End Devices > End Devices > Server` |
-| Câmeras IP (CFTV — *substituto*) | 4 | `Cam-IP-01` a `Cam-IP-04` | `PC-PT` | `End Devices > End Devices > PC` |
+| Câmeras IP (CFTV — *substituto*) | 4 | `CAM-IP-01` a `CAM-IP-04` | `PC-PT` | `End Devices > End Devices > PC` |
 | Tablets de Atendimento | 2 | `Tablet-01`, `Tablet-02` | `TabletPC-PT` | `End Devices > End Devices > Tablet` |
 | Maquininha de Cartão (*substituto*) | 1 | `Maquininha-POS` | `Smartphone-PT` | `End Devices > End Devices > Smartphone` |
 
@@ -49,10 +49,10 @@ Selecione o cabo **Copper Straight-Through** (linha preta contínua em `Connecti
 | **VLAN 10 (`VENDAS_PDV`)** | **`FastEthernet0/3`** | `Caixa-03` (`PC-PT`) | `FastEthernet0` | `Copper Straight-Through` |
 | **VLAN 10 (`VENDAS_PDV`)** | **`FastEthernet0/4`** | `Impressora-Rede` (`Printer-PT`) | `FastEthernet0` | `Copper Straight-Through` |
 | **VLAN 20 (`SERVIDORES`)** | **`FastEthernet0/9`** | `SRV-Estoque-NVR` (`Server-PT`) | `FastEthernet0` | `Copper Straight-Through` |
-| **VLAN 30 (`CFTV`)** | **`FastEthernet0/11`** | `Cam-IP-01` (`PC-PT`) | `FastEthernet0` | `Copper Straight-Through` |
-| **VLAN 30 (`CFTV`)** | **`FastEthernet0/12`** | `Cam-IP-02` (`PC-PT`) | `FastEthernet0` | `Copper Straight-Through` |
-| **VLAN 30 (`CFTV`)** | **`FastEthernet0/13`** | `Cam-IP-03` (`PC-PT`) | `FastEthernet0` | `Copper Straight-Through` |
-| **VLAN 30 (`CFTV`)** | **`FastEthernet0/14`** | `Cam-IP-04` (`PC-PT`) | `FastEthernet0` | `Copper Straight-Through` |
+| **VLAN 30 (`CFTV`)** | **`FastEthernet0/11`** | `CAM-IP-01` (`PC-PT`) | `FastEthernet0` | `Copper Straight-Through` |
+| **VLAN 30 (`CFTV`)** | **`FastEthernet0/12`** | `CAM-IP-02` (`PC-PT`) | `FastEthernet0` | `Copper Straight-Through` |
+| **VLAN 30 (`CFTV`)** | **`FastEthernet0/13`** | `CAM-IP-03` (`PC-PT`) | `FastEthernet0` | `Copper Straight-Through` |
+| **VLAN 30 (`CFTV`)** | **`FastEthernet0/14`** | `CAM-IP-04` (`PC-PT`) | `FastEthernet0` | `Copper Straight-Through` |
 | **VLAN 40 (`WLAN_MOVEL`)** | **`FastEthernet0/19`** | `AP-Loja` (`AP-PT`) | `Port 0` | `Copper Straight-Through` |
 
 ### Portas Reservadas para Escalabilidade (Não conectar agora)

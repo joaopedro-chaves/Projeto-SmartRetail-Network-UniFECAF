@@ -61,7 +61,7 @@ interface FastEthernet0/9
  no shutdown
  exit
 
-! VLAN 30: Cam-IP-01 a Cam-IP-04 (Fa0/11 a Fa0/14)
+! VLAN 30: CAM-IP-01 a CAM-IP-04 (Fa0/11 a Fa0/14)
 interface range FastEthernet0/11 - 14
  description VLAN30_CFTV_CAMERAS
  switchport mode access

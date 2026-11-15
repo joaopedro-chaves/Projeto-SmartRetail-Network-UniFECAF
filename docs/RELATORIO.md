@@ -114,7 +114,7 @@ Infraestrutura, servidor, impressora e câmeras operam com **IP estático** para
 ### 5.2 Dispositivos Dinâmicos e Pools DHCP
 Os pools configurados no `RTR-AnaFashion` reservam os endereços **`.1` a `.99`** via `ip dhcp excluded-address` e distribuem automaticamente a faixa **`.100` a `.254`** (**155 IPs úteis por pool**):
 
-| Pool DHCP | VLAN | Faixa Excluída | Faixa Distribuída | Dispositivos Atendidos e IPs Obtidos (Print) | Justificativa do DHCP |
+| Pool DHCP | VLAN | Faixa Excluída | Faixa Distribuída | Dispositivos Atendidos e IPs Obtidos (`show ip dhcp binding`, Figura 3) | Justificativa do DHCP |
 | :--- | :---: | :--- | :--- | :--- | :--- |
 | `POOL_VLAN10_PDV` | 10 | `192.168.10.1–99` | `192.168.10.100–254` | `Caixa-01` (`192.168.10.100`), `Caixa-02` (`192.168.10.101`), `Caixa-03` (`192.168.10.102`) | Facilita troca ou inclusão de terminais de caixa sem reconfiguração manual. |
 | `POOL_VLAN40_WLAN` | 40 | `192.168.40.1–99` | `192.168.40.100–254` | `Tablet-01` (`192.168.40.100`), `Tablet-02` (`192.168.40.101`), `Maquininha-POS` (`192.168.40.102`) | Entrega imediata de IP, máscara, gateway e DNS ao autenticar no Wi-Fi corporativo. |
@@ -193,8 +193,8 @@ Aplicadas na entrada (`in`) das sub-interfaces do `RTR-AnaFashion` segundo o **p
 | `Tablet-01` (VLAN 40 Wi-Fi) | `192.168.30.11` (`CAM-IP-01`) | **Bloqueado** (`100% loss` — `192.168.40.1: Destination host unreachable`) | `07_teste_tablet01_sucesso_e_bloqueio.png` |
 | `Tablet-01` (VLAN 40 Wi-Fi) | `192.168.10.10` (`Impressora-Rede`) | **Bloqueado** (`100% loss` — `192.168.40.1: Destination host unreachable`) | `07_teste_tablet01_sucesso_e_bloqueio.png` |
 | `Maquininha-POS` (`192.168.40.102`) | `8.8.8.8` (Operadora/Internet) | **Sucesso** (`4/4` `Reply from 8.8.8.8`) | `08_teste_maquininha_pos.png` |
-| `CAM-IP-02` (VLAN 30 CFTV) | `192.168.20.10` (`SRV-Estoque-NVR`) | **Sucesso** (`4/4` recebidos, `0% loss`) | `09_teste_camera01_nvr_e_isolamento.png` |
-| `CAM-IP-02` (VLAN 30 CFTV) | `8.8.8.8` (Internet) e `192.168.10.10` (PDV) | **Bloqueado** (`100% loss` — `192.168.30.1: Destination host unreachable`) | `09_teste_camera01_nvr_e_isolamento.png` |
+| `CAM-IP-02` (VLAN 30 CFTV) | `192.168.20.10` (`SRV-Estoque-NVR`) | **Sucesso** (`4/4` recebidos, `0% loss`) | `09_teste_camera02_nvr_e_isolamento.png` |
+| `CAM-IP-02` (VLAN 30 CFTV) | `8.8.8.8` (Internet) e `192.168.10.10` (PDV) | **Bloqueado** (`100% loss` — `192.168.30.1: Destination host unreachable`) | `09_teste_camera02_nvr_e_isolamento.png` |
 
 ![Testes de Conectividade e DNS no Caixa-01](../dist/prints/06_teste_caixa01_sucesso_e_bloqueio.png)
 > *Figura 7 — `ipconfig` e testes de sucesso do `Caixa-01` para o servidor, impressora e resolução DNS `estoque.anafashion.local` (`dist/prints/06_teste_caixa01_sucesso_e_bloqueio.png`).*
@@ -205,8 +205,8 @@ Aplicadas na entrada (`in`) das sub-interfaces do `RTR-AnaFashion` segundo o **p
 ![Teste DHCP e Conectividade Externa na Maquininha-POS](../dist/prints/08_teste_maquininha_pos.png)
 > *Figura 9 — `Maquininha-POS` operando via Wi-Fi com IP DHCP `192.168.40.102` e comunicação externa validada para `8.8.8.8` (`dist/prints/08_teste_maquininha_pos.png`).*
 
-![Teste de Gravação NVR e Isolamento na Câmera CAM-IP-02](../dist/prints/09_teste_camera01_nvr_e_isolamento.png)
-> *Figura 10 — `CAM-IP-02` comunicando-se com o servidor NVR (`192.168.20.10`) e bloqueada para Internet (`8.8.8.8`) e PDV (`192.168.10.10`) (`dist/prints/09_teste_camera01_nvr_e_isolamento.png`).*
+![Teste de Gravação NVR e Isolamento na Câmera CAM-IP-02](../dist/prints/09_teste_camera02_nvr_e_isolamento.png)
+> *Figura 10 — `CAM-IP-02` comunicando-se com o servidor NVR (`192.168.20.10`) e bloqueada para Internet (`8.8.8.8`) e PDV (`192.168.10.10`) (`dist/prints/09_teste_camera02_nvr_e_isolamento.png`).*
 
 ---
 
