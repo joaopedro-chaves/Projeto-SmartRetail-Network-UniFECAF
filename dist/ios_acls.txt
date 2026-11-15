@@ -1,0 +1,55 @@
+! =====================================================================
+! Script Cisco IOS - ACLs de Seguranca (RTR-AnaFashion - 2911)
+! Projeto: SmartRetail Network (Ana Fashion) - UniFECAF
+! Passo 7: Isolamento de CFTV (VLAN 30) e Politica Inter-VLAN
+! =====================================================================
+
+enable
+configure terminal
+
+! --- 1. ACL da VLAN 10 (VENDAS_PDV) ---
+! Permite VLAN 20 (Servidor) e Internet; bloqueia VLAN 30 (CFTV), VLAN 40 (Wi-Fi) e VLAN 99 (Gerencia)
+ip access-list extended ACL_VLAN10_IN
+ permit ip 192.168.10.0 0.0.0.255 192.168.20.0 0.0.0.255
+ deny ip 192.168.10.0 0.0.0.255 192.168.30.0 0.0.0.255
+ deny ip 192.168.10.0 0.0.0.255 192.168.40.0 0.0.0.255
+ deny ip 192.168.10.0 0.0.0.255 192.168.99.0 0.0.0.255
+ permit ip 192.168.10.0 0.0.0.255 any
+ exit
+
+! --- 2. ACL da VLAN 30 (CFTV - Isolamento Estrito) ---
+! Permite apenas comunicacao com VLAN 20 (NVR) e ICMP para proprio gateway; bloqueia todo o resto
+ip access-list extended ACL_VLAN30_IN
+ permit ip 192.168.30.0 0.0.0.255 192.168.20.0 0.0.0.255
+ permit icmp 192.168.30.0 0.0.0.255 host 192.168.30.1
+ deny ip any any
+ exit
+
+! --- 3. ACL da VLAN 40 (WLAN_MOVEL - Tablets e Maquininha POS) ---
+! Permite VLAN 20 (Servidor) e Internet; bloqueia VLAN 30 (CFTV), VLAN 10 (PDV) e VLAN 99 (Gerencia)
+! Nota futura: para liberar impressora aos tablets, inserir antes do deny da 192.168.10.0:
+! permit ip 192.168.40.0 0.0.0.255 host 192.168.10.10
+ip access-list extended ACL_VLAN40_IN
+ permit ip 192.168.40.0 0.0.0.255 192.168.20.0 0.0.0.255
+ deny ip 192.168.40.0 0.0.0.255 192.168.30.0 0.0.0.255
+ deny ip 192.168.40.0 0.0.0.255 192.168.10.0 0.0.0.255
+ deny ip 192.168.40.0 0.0.0.255 192.168.99.0 0.0.0.255
+ permit ip 192.168.40.0 0.0.0.255 any
+ exit
+
+! --- 4. Aplicar ACLs na Entrada (in) das Sub-interfaces ---
+interface GigabitEthernet0/0.10
+ ip access-group ACL_VLAN10_IN in
+ exit
+
+interface GigabitEthernet0/0.30
+ ip access-group ACL_VLAN30_IN in
+ exit
+
+interface GigabitEthernet0/0.40
+ ip access-group ACL_VLAN40_IN in
+ exit
+
+! --- 5. Salvar Configuracao ---
+end
+write memory

@@ -32,7 +32,7 @@
   - **Ação da IA:** Gerar o bloco de comandos Cisco IOS limpo para criação das VLANs e atribuição das interfaces no Switch, pronto para colar no terminal CLI.
   - **Critério de Confirmação:** Usuário confirma que aplicou os comandos no Switch sem erros.
 
-- [ ] **Passo 6 — Configuração do Roteador/Gateway (Roteamento, DHCP e DNS)**
+- [x] **Passo 6 — Configuração do Roteador/Gateway (Roteamento, DHCP e DNS)**
   - **Ação da IA:** Gerar o bloco de comandos Cisco IOS para sub-interfaces (Router-on-a-Stick), pools DHCP por VLAN, configuração de DNS e saída para a Internet (WAN).
   - **Critério de Confirmação:** Usuário confirma que aplicou os comandos no Roteador e os dispositivos dinâmicos pegaram IP via DHCP.
 
