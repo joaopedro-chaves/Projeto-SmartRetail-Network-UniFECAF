@@ -9,9 +9,9 @@ O projeto responde à questão central:
 
 Video Pitch: https://youtu.be/LaLK1n3kerc
 
-PDF: [link]
+PDF: [PDF](https://github.com/joaopedro-chaves/Projeto-SmartRetail-Network-UniFECAF/blob/main/dist/SmartRetail%20Network%20(Ana%20Fashion)%20-%20Parte%20Te%C3%B3rica.pdf)
 
-Arquivo Packet Tracer: [link]
+Arquivo Packet Tracer: [Packet Tracer](https://github.com/joaopedro-chaves/Projeto-SmartRetail-Network-UniFECAF/blob/main/dist/main.pkt)
 
 ## Visão Geral da Arquitetura
 
