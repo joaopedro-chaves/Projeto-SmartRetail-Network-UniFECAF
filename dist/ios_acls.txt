@@ -10,6 +10,7 @@ configure terminal
 ! --- 1. ACL da VLAN 10 (VENDAS_PDV) ---
 ! Permite VLAN 20 (Servidor) e Internet; bloqueia VLAN 30 (CFTV), VLAN 40 (Wi-Fi) e VLAN 99 (Gerencia)
 ip access-list extended ACL_VLAN10_IN
+ permit udp any any eq bootps
  permit ip 192.168.10.0 0.0.0.255 192.168.20.0 0.0.0.255
  deny ip 192.168.10.0 0.0.0.255 192.168.30.0 0.0.0.255
  deny ip 192.168.10.0 0.0.0.255 192.168.40.0 0.0.0.255
@@ -30,6 +31,7 @@ ip access-list extended ACL_VLAN30_IN
 ! Nota futura: para liberar impressora aos tablets, inserir antes do deny da 192.168.10.0:
 ! permit ip 192.168.40.0 0.0.0.255 host 192.168.10.10
 ip access-list extended ACL_VLAN40_IN
+ permit udp any any eq bootps
  permit ip 192.168.40.0 0.0.0.255 192.168.20.0 0.0.0.255
  deny ip 192.168.40.0 0.0.0.255 192.168.30.0 0.0.0.255
  deny ip 192.168.40.0 0.0.0.255 192.168.10.0 0.0.0.255

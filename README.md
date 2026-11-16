@@ -5,6 +5,14 @@ Projeto acadêmico da disciplina **Computer Network (Redes de Computadores)** da
 O projeto responde à questão central:
 > *"Como estruturar uma rede corporativa de pequeno porte capaz de integrar vendas, estoque, pagamentos, dispositivos móveis e CFTV com segurança, disponibilidade e possibilidade de expansão?"*
 
+## Artefatos
+
+Video Pitch: https://youtu.be/LaLK1n3kerc
+
+PDF: [link]
+
+Arquivo Packet Tracer: [link]
+
 ## Visão Geral da Arquitetura
 
 A solução adota topologia física em **Estrela** combinada à arquitetura lógica **Router-on-a-Stick (IEEE 802.1Q)**, garantindo convergência física com isolamento lógico entre setores:
@@ -40,21 +48,14 @@ O planejamento prevê ainda as sub-redes **`VLAN 50` (`192.168.50.0/24`)** e **`
 
 ## Estrutura do Repositório
 
-- `AGENTS.md` — Regras de consistência técnica e controle de fluxo do copiloto.
-- `LEGACY.md` — Registro auxiliar de referência.
 - `dist/`
   - `main.pkt` — Topologia completa implementada no Cisco Packet Tracer.
-  - `plano_rede.md` — Fonte única da verdade para sub-redes, IPs, VLANs e reservas.
-  - `guia_montagem_passo4.md` e `guia_topologia_passo4.jpg` — Guia porta a porta e diagrama de apoio da montagem física.
   - `ios_switch.txt`, `ios_router.txt`, `ios_isp.txt`, `ios_acls.txt` — Scripts Cisco IOS aplicados nos equipamentos.
   - `prints/` — Evidências capturadas no Cisco Packet Tracer (topologia, VLANs/Trunk, DHCP/NAT, ACLs, DNS, Wi-Fi e testes de conectividade/bloqueio).
 - `docs/`
   - `ORIENTACOES.md` — Requisitos oficiais e critérios de avaliação da UniFECAF.
-  - `WORKFLOW.md` — Roteiro de execução passo a passo com validação por etapa.
   - `TASK.md` — Lista de controle das entregas e prazos.
   - `RELATORIO.md` — Relatório técnico completo cobrindo os 9 tópicos obrigatórios e a questão central.
-  - `PITCH.md` — Roteiro cronometrado do vídeo pitch (3m45s) e checklist final de entrega no AVA.
-  - `HISTORICO_CONVERSA.md` — Trilha auditável completa da execução passo a passo e interações com a IA.
 
 
 ## Política de Uso de Inteligência Artificial
